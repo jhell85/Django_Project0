@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Movie
 
 def home(request):
-  return HttpResponse('<h1>Hello World </h1>')
+  movies = Movie.objects.all()
+
+  context = {
+    'movies': movies
+  }
+  print(context)
+  return render(request, 'myapp/index.html', context)
 # Create your views here.
